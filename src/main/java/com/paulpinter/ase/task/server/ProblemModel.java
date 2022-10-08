@@ -1,10 +1,11 @@
 package com.paulpinter.ase.task.server;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+
 @AllArgsConstructor
-public class EquationModel {
-    String equation;
+@Getter
+public class ProblemModel {
+   private String equation;
 }

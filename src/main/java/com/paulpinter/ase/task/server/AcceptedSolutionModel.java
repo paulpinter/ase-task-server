@@ -8,6 +8,6 @@ import lombok.Data;
 public class AcceptedSolutionModel {
 
     private final static String MESSAGE = "Accepted";
-    private String linkToNextTask = "";
+    private String linkToNextTask;
 
 }
