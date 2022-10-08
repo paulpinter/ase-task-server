@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "1ee856f3-2a30-4ad3-8171-82e0887b46fc",
+		"name": "ASE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6858660"
+	},
+	"item": [
+		{
+			"name": "Start",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8083/ase/equation/assignment/1427908/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8083",
+					"path": [
+						"ase",
+						"equation",
+						"assignment",
+						"1427908",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S1_T1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": [\n        \"9=9\",\n        \"0=0\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S1_T2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S2_T1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": [\n        \"0+9=9\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S2_T2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": [\n        \"3+5=8\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S3T1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": [\n        \"7-1=6\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S3_T2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S4_T1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": [\n        \"1+1=2\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EQ_S4_T2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correctedEquations\": [\n        \"7-1=6\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json()[\"linkToNextTask\"]",
+							"pm.environment.set(\"ASE_NEXT_TASK\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ASE_NEXT_TASK}}",
+					"host": [
+						"{{ASE_NEXT_TASK}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
