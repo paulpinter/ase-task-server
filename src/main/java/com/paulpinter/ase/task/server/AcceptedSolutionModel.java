@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class AcceptedSolutionModel {
 
-    private final static String MESSAGE = "Accepted";
+    private final String message = "Accepted";
     private String linkToNextTask;
 
 }

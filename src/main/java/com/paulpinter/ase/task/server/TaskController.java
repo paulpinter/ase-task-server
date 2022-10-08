@@ -28,19 +28,15 @@ public class TaskController {
     }
 
     @GetMapping("/token")
-    public String getInitToken(@PathVariable String scenario, @PathVariable String matNum) {
-        return tokenService.generateInitToken(scenario, matNum);
+    public ResponseEntity<AcceptedSolutionModel> startTasks(@PathVariable String scenario,
+        @PathVariable String matNum) {
+        return ResponseEntity.accepted().body(acceptedSolutionService.linkToNextTask(scenario, matNum, 0));
     }
 
     @GetMapping("/stage/{stage}/testcase/{testCase}")
     public ResponseEntity<ProblemModel> getProblem(@PathVariable String scenario, @PathVariable String matNum,
         @PathVariable int stage, @PathVariable int testCase, @RequestParam String token) {
-        boolean isTokenValid;
-        if (stage == 1 && testCase == 1) {
-            isTokenValid = tokenService.verifyInitToken(token, scenario, matNum);
-        } else {
-            isTokenValid = tokenService.verifyTaskToken(token, scenario, matNum, stage, testCase);
-        }
+        boolean isTokenValid = tokenService.verifyTaskToken(token, scenario, matNum, stage, testCase);
         if (!isTokenValid) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
@@ -57,19 +53,18 @@ public class TaskController {
     }
 
     @PostMapping("/stage/{stage}/testcase/{testCase}")
-    public ResponseEntity<AcceptedSolutionModel> checkSolution(@RequestBody SolutionModel correctedEquations,
+    public ResponseEntity<AcceptedSolutionModel> checkSolution(@RequestBody SolutionModel solutionModel,
         @PathVariable String scenario, @PathVariable String matNum, @PathVariable int stage, @PathVariable int testCase,
         @RequestParam String token) {
         if (!tokenService.verifyTaskToken(token, scenario, matNum, stage, testCase)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-
         Optional<TaskModel> taskSearchResult = taskService.findTask(scenario, stage, testCase);
         if (taskSearchResult.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         TaskModel task = taskSearchResult.get();
-        boolean isSolutionCorrect = acceptedSolutionService.isProvidedSolutionCorrect(task, correctedEquations);
+        boolean isSolutionCorrect = acceptedSolutionService.isProvidedSolutionCorrect(task, solutionModel);
 
         if (!isSolutionCorrect) {
             return ResponseEntity.status(417).body(null);
@@ -79,7 +74,7 @@ public class TaskController {
     }
 
     @GetMapping("/finish")
-    public HttpStatus getInitToken(@PathVariable String scenario, @PathVariable String matNum,
+    public HttpStatus startTasks(@PathVariable String scenario, @PathVariable String matNum,
         @RequestParam String token) {
         return tokenService.verifyFinalToken(token, scenario, matNum) ? HttpStatus.OK : HttpStatus.valueOf(417);
     }

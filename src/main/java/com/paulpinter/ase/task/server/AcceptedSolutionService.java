@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 public class AcceptedSolutionService {
 
     @Value("${server.port}")
-    private String port;
+    private int serverPort;
     private final static String HOST = "127.0.0.1";
-    private final String baseUrl = "http://" + HOST + ":" + port;
     private final TokenService tokenService;
     private final TaskService taskService;
 
@@ -21,18 +20,18 @@ public class AcceptedSolutionService {
     }
 
     public AcceptedSolutionModel linkToNextTask(String scenario, String matNum, int currentStage) {
+        String baseUrl = "http://" + HOST + ":" + serverPort + "/ase/" + scenario + "/assignment/" + matNum;
         Optional<TaskModel> chosenTask = taskService.chooseNextTask(scenario, currentStage);
         if (chosenTask.isEmpty()) {
             String lastToken = tokenService.generateFinalToken(scenario, matNum);
-            return new AcceptedSolutionModel(baseUrl + "/" + scenario + "/" + "finish?token=" + lastToken);
+            return new AcceptedSolutionModel(baseUrl + "/finish?token=" + lastToken);
         }
         TaskModel nextTask = chosenTask.get();
         int nextStage = nextTask.getStage();
         int nextTestCase = nextTask.getTestCase();
         String nextToken = tokenService.generateToken(scenario, matNum, nextStage, nextTestCase);
         return new AcceptedSolutionModel(
-            baseUrl + "/" + scenario + "/" + matNum + "/stage/" + nextStage + "/testcase/" + nextTestCase + "?token="
-                + nextToken);
+            baseUrl + "/stage/" + nextStage + "/testcase/" + nextTestCase + "?token=" + nextToken);
     }
 
     public boolean isProvidedSolutionCorrect(TaskModel task, SolutionModel providedSolution) {

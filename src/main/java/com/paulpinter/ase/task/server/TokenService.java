@@ -39,18 +39,6 @@ public class TokenService {
         return scenario + '-' + matNumber + '-' + stage + '-' + testCase;
     }
 
-    public String generateInitToken(String scenario, String matNum) {
-        return Jwts.builder().setSubject(generateInitTokenSub(scenario,matNum)).signWith(key).compact();
-    }
-
-    public String generateInitTokenSub(String scenario, String matNum) {
-        return scenario + '-' + matNum;
-    }
-
-    public boolean verifyInitToken(String token, String scenario, String matNum) {
-        return verifyToken(token, generateInitTokenSub(scenario, matNum));
-    }
-
     public String generateFinalToken(String scenario, String matNum) {
         return Jwts.builder().setSubject(generateFinalTokenSub(scenario,matNum)).signWith(key).compact();
     }

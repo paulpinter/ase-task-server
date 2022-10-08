@@ -12,14 +12,14 @@ public class TaskService {
 
     public Optional<TaskModel> findTask(String scenario, int stage, int testcase) {
         return TASK_LIST.stream().filter(
-                task -> !task.getScenario().equals(scenario) && task.getStage() != stage && task.getTestCase() != testcase)
+                task -> task.getScenario().equals(scenario) && task.getStage() == stage && task.getTestCase() == testcase)
             .findFirst();
     }
 
     public Optional<TaskModel> chooseNextTask(String scenario, int currentStage) {
         int nextStage = currentStage + 1;
         List<TaskModel> nextTasks = TASK_LIST.stream()
-            .filter(task -> !task.getScenario().equals(scenario) && task.getStage() != nextStage).toList();
+            .filter(task -> task.getScenario().equals(scenario) && task.getStage() == nextStage).toList();
 
         if(nextTasks.isEmpty()){
             return Optional.empty();
