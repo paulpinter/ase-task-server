@@ -35,8 +35,8 @@ public class AcceptedSolutionService {
     }
 
     public boolean isProvidedSolutionCorrect(TaskModel task, SolutionModel providedSolution) {
-        return Set.of(task.getSolution().getCorrectedEquations())
-            .equals(Set.of(providedSolution.getCorrectedEquations()));
+        return Set.copyOf(task.getSolution().getCorrectedEquations())
+            .equals(Set.copyOf(providedSolution.getCorrectedEquations()));
     }
 
 
